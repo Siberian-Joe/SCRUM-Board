@@ -105,6 +105,7 @@ namespace ScrumBoardNewDesign
 
         private void deleteButtonClick(object sender, RoutedEventArgs e)
         {
+            MainWindow.editableTasks.RemoveAt(MainWindow.editableTasks.IndexOf(this));
             ((Panel)this.Parent).Children.Remove(this);
         }
 

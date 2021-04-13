@@ -29,7 +29,7 @@ namespace ScrumBoardNewDesign
         List<User> users = new List<User>();
         List<string> columns = new List<string>();
         List<StackPanel> stackPanels = new List<StackPanel>();
-        List<EditableTask> editableTasks = new List<EditableTask>();
+        static public List<EditableTask> editableTasks = new List<EditableTask>();
 
         static public bool shiftIsPressed;
 
@@ -245,7 +245,10 @@ namespace ScrumBoardNewDesign
 
         private void addTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            stackPanels[0].Children.Add(new EditableTask());
+            editableTasks.Add(new EditableTask());
+            editableTasks[editableTasks.Count - 1].row = 1;
+            editableTasks[editableTasks.Count - 1].column = 1;
+            stackPanels[0].Children.Add(editableTasks[editableTasks.Count - 1]);
         }
 
         private void refreshTaskButton_Click(object sender, RoutedEventArgs e)
