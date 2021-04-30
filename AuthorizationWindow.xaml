@@ -29,9 +29,9 @@
 
             <StackPanel VerticalAlignment="Center">
                 <Image Source="assets/Sign-In-icon.png" Width="80" RenderOptions.BitmapScalingMode="HighQuality"/>
-                <TextBlock Text="Sign In" FontWeight="Light" FontFamily="helvetica" FontSize="22" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock" Text="Sign In" FontWeight="Light" FontFamily="helvetica" FontSize="22" Foreground="White" HorizontalAlignment="Center"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel x:Name="authorizationWindow" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="usernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Username" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
                 </StackPanel>
@@ -46,7 +46,33 @@
                     <Button x:Name="signInButton" Width="100" Height="40" Content="Sign In" Margin="0, 0, 10, 0" Click="signInButton_Click"/>
                     <Button x:Name="signUpButton" Width="100" Height="40" Content="Sign Up" Margin="10, 0, 0, 0" Click="signUpButton_Click"/>
                 </StackPanel>
+            </StackPanel>
 
+            <StackPanel x:Name="registrationWindow" Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="registrationUsernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Username" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                </StackPanel>
+                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
+                    <TextBox x:Name="registrationFullNameUsernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Full Name" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="registrationFullNameUsernameTextBox_GotFocus" LostFocus="registrationFullNameUsernameTextBox_LostFocus"/>
+                </StackPanel>
+                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
+                    <PasswordBox x:Name="registrationFirstPasswordTextBox" FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+                </StackPanel>
+                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
+                    <PasswordBox x:Name="registrationSecondPasswordTextBox" FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+                </StackPanel>
+                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+
+                <StackPanel  Orientation="Horizontal" Margin="0, 7, 0, 0" HorizontalAlignment="Center">
+                    <Button x:Name="continueButton" Width="100" Height="40" Content="Continue" Margin="0, 0, 10, 0" Click="continueButton_Click"/>
+                    <Button x:Name="backButton" Width="100" Height="40" Content="Back" Margin="10, 0, 0, 0" Click="backButton_Click"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

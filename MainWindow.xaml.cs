@@ -33,11 +33,14 @@ namespace ScrumBoardNewDesign
 
         static public bool shiftIsPressed;
 
+        static bool flag = false;
+
         public MainWindow(User mainUser)
         {
             InitializeComponent();
             MainWindow.mainUser = mainUser;
 
+            userPanel.setUser(mainUser);
 
 
             //mainGrid.RowDefinitions.Add(new RowDefinition());
@@ -58,6 +61,12 @@ namespace ScrumBoardNewDesign
             fillFullNameColumn();
             fillColumns();
             fillTasks();
+
+            if(!mainUser.canEdit)
+            {
+                addTaskButton.Visibility = Visibility.Collapsed;
+                saveTaskButton.Visibility = Visibility.Collapsed;
+            }
         }
         void readDB()
         {
@@ -197,36 +206,8 @@ namespace ScrumBoardNewDesign
 
         void fillTasks()
         {
-            //try
-            //{
-            //    dbConnection.Open();
-            //    OleDbCommand dbCommand = dbConnection.CreateCommand();
-            //    dbCommand.CommandType = System.Data.CommandType.TableDirect;
-            //    dbCommand.CommandText = "Задачи";
-
-            //    OleDbDataReader dbReader = dbCommand.ExecuteReader();
-
-            //    //while (dbReader.Read())
-            //    //{
-            //    //    if(dbReader["Код пользователя"].ToString().Equals(""))
-            //    //        stackPanels[0].Children.Add(new EditableTask(dbReader["Заголовок"].ToString(), dbReader["Описание"].ToString()));
-            //    //    else
-            //    //        stackPanels[Convert.ToInt32(dbReader["Код пользователя"].ToString()) + users.Count * (Convert.ToInt32(dbReader["Код столбца"].ToString()) - 2)].Children.Add(new EditableTask(dbReader["Заголовок"].ToString(), dbReader["Описание"].ToString()));
-            //    //}
-
-            //    editableTasks.Add(new EditableTask(dbReader["Заголовок"].ToString(), dbReader["Описание"].ToString(), Convert.ToInt32(dbReader["Код столбца"].ToString()), Convert.ToInt32(dbReader["Код пользователя"].ToString())));
-
-            //    dbConnection.Close();
-            //}
-            //catch (OleDbException ex)
-            //{
-            //    MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    dbConnection.Close();
-            //}
-
             for(int i = 0; i < editableTasks.Count; i++)
             {
-                Console.WriteLine(editableTasks[i].row + " " + editableTasks[i].column);
                 if(editableTasks[i].row + users.Count * (editableTasks[i].column - 2) <  0)
                     stackPanels[0].Children.Add(editableTasks[i]);
                 else
@@ -305,24 +286,6 @@ namespace ScrumBoardNewDesign
                         dbConnection.Close();
                     }
 
-                    //
-
-                    //dbCommand.CommandText = "DELETE * FROM [Копия Задачи]";
-
-                    //dbReader = dbCommand.ExecuteReader();
-
-                    //while (dbReader.Read())
-                    //    users.Add(new User(dbReader["Имя пользователя"].ToString(), dbReader["ФИО"].ToString(), (bool)dbReader["Менеджер"]));
-
-                    //dbConnection.Close();
-                    //dbConnection.Open();
-
-                    //dbCommand.CommandText = "Столбцы";
-                    //dbReader = dbCommand.ExecuteReader();
-
-                    //while (dbReader.Read())
-                    //    columns.Add(dbReader["Заголовок"].ToString());
-
                     dbConnection.Close();
                     loadingBorder.Visibility = Visibility.Collapsed;
                 }
@@ -340,8 +303,6 @@ namespace ScrumBoardNewDesign
             if (mainUser.canEdit)
             {
                 EditableTask editableTask = (EditableTask)e.Data.GetData(typeof(EditableTask));
-
-                Console.WriteLine(editableTask.title + " " + editableTask.info);
 
                 if (Grid.GetRow((Grid)sender) + users.Count * (Grid.GetColumn((Grid)sender) - 2) < 0)
                 {
@@ -364,15 +325,7 @@ namespace ScrumBoardNewDesign
                     editableTask.column = Grid.GetColumn((Grid)sender);
                     stackPanels[Grid.GetRow((Grid)sender) + users.Count * (Grid.GetColumn((Grid)sender) - 2)].Children.Add(editableTask);
                 }
-
-
-                //if (Grid.GetRow((Grid)sender) + 3 * (Grid.GetColumn((Grid)sender) - 2) < 0)
-                //    stackPanels[0].Children.Add(new EditableTask(editableTask.title, editableTask.info));
-                //else
-                //    stackPanels[Grid.GetRow((Grid)sender) + 3 * (Grid.GetColumn((Grid)sender) - 2)].Children.Add(new EditableTask(editableTask.title, editableTask.info));
-                //Console.WriteLine(editableTask.title + " " + editableTask.info);
             }
-
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -385,6 +338,29 @@ namespace ScrumBoardNewDesign
         {
             if ((e.Key == Key.LeftShift) && mainUser.canEdit)
                 MainWindow.shiftIsPressed = false;
+        }
+
+        private void themeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!flag)
+            {
+                mainBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#272537");
+
+                themeButton.Content = "White Theme";
+                flag = true;
+            }
+            else
+            {
+
+                GradientStopCollection gradientStops = new GradientStopCollection();
+                gradientStops.Add(new GradientStop() { Color = Color.FromRgb(123, 233, 246), Offset = 0.0 });
+                gradientStops.Add(new GradientStop() { Color = Color.FromRgb(240, 131, 218), Offset = 1.0 });
+
+                mainBorder.Background = new LinearGradientBrush(gradientStops, 60) { StartPoint = new Point(0, 0), EndPoint = new Point(1, 1) };
+
+                themeButton.Content = "Dark Theme";
+                flag = false;
+            }
         }
     }
 }

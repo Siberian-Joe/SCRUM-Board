@@ -22,3 +22,6 @@ D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\EditableTask.g.cs
 D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\EditableTask.baml
 D:\Software projects\С#\ScrumBoardNewDesign\bin\Debug\assets\loading.gif
 D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\ScrumBoardNewDesign_Content.g.cs
+D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\UserPanel.g.cs
+D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Software projects\С#\ScrumBoardNewDesign\obj\Debug\UserPanel.baml

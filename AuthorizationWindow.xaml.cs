@@ -21,6 +21,8 @@ namespace ScrumBoardNewDesign
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        OleDbConnection dbConnection = new OleDbConnection("provider=Microsoft.Jet.OLEDB.4.0;Data Source=ScrumDB.mdb");
+        bool flag = false;
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -37,10 +39,22 @@ namespace ScrumBoardNewDesign
                 ((TextBox)sender).Clear();
         }
 
+        private void registrationFullNameUsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (((TextBox)sender).Text.Equals("Full Name"))
+                ((TextBox)sender).Clear();
+        }
+
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (((TextBox)sender).Text.Equals(""))
                 ((TextBox)sender).Text = "Username";
+        }
+
+        private void registrationFullNameUsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (((TextBox)sender).Text.Equals(""))
+                ((TextBox)sender).Text = "Full Name";
         }
 
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
@@ -62,15 +76,10 @@ namespace ScrumBoardNewDesign
 
             try
             {
-                string connetionString = "provider=Microsoft.Jet.OLEDB.4.0;Data Source=ScrumDB.mdb";
-                OleDbConnection dbConnection = new OleDbConnection(connetionString);
-
                 dbConnection.Open();
                 OleDbCommand dbCommand = dbConnection.CreateCommand();
                 dbCommand.CommandType = System.Data.CommandType.TableDirect;
                 dbCommand.CommandText = "SELECT * FROM Пользователи WHERE [Имя пользователя] = '" + username + "' AND Пароль = '" + password + "'";
-                //dbCommand.Parameters.Add("@username", OleDbType.VarChar).Value = username;
-                //dbCommand.Parameters.Add("@password", OleDbType.VarChar).Value = password;
 
                 OleDbDataReader dbReader = dbCommand.ExecuteReader();
 
@@ -85,15 +94,9 @@ namespace ScrumBoardNewDesign
                     new MainWindow(mainUser).Show();
                     this.Close();
                 }
+                else
+                    MessageBox.Show("Неверно введены данные!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                //Console.WriteLine(dbReader["Имя пользователя"]);
-                //Console.WriteLine(dbReader["Пароль"]);
-
-                //while (dbReader.Read())
-                //{
-                //    //Console.WriteLine(dbReader["Имя пользователя"]);
-                //    //Console.WriteLine(dbReader["Пароль"]);
-                //}
                 dbConnection.Close();
             }
             catch  (OleDbException ex)
@@ -105,12 +108,76 @@ namespace ScrumBoardNewDesign
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Sign Up");
+            textBlock.Text = "Sign Up";
+            authorizationWindow.Visibility = Visibility.Collapsed;
+            registrationWindow.Visibility = Visibility.Visible;
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void continueButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (registrationFirstPasswordTextBox.Password != registrationSecondPasswordTextBox.Password)
+                MessageBox.Show("Пароли не совпадают!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+            {
+                try
+                {
+                    dbConnection.Open();
+                    OleDbCommand dbCommand = dbConnection.CreateCommand();
+                    dbCommand.CommandType = System.Data.CommandType.TableDirect;
+                    dbCommand.CommandText = "SELECT * FROM Пользователи WHERE [Имя пользователя] = '" + registrationUsernameTextBox.Text + "'";
+
+                    OleDbDataReader dbReader = dbCommand.ExecuteReader();
+
+                    if (dbReader.HasRows)
+                        flag = true;
+
+                    dbConnection.Close();
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                if (!flag)
+                {
+                    try
+                    {
+                        dbConnection.Open();
+                        OleDbCommand dbCommand = new OleDbCommand("INSERT INTO Пользователи (ФИО, [Имя пользователя], Пароль) VALUES (" + "'" + registrationFullNameUsernameTextBox.Text + "'" + "," + "'" + registrationUsernameTextBox.Text + "'" + "," + "'" + registrationFirstPasswordTextBox.Password + "'" + ")", dbConnection);
+
+                        dbCommand.ExecuteNonQuery();
+
+                        dbConnection.Close();
+
+                        flag = false;
+
+                        textBlock.Text = "Sign In";
+                        registrationWindow.Visibility = Visibility.Collapsed;
+                        authorizationWindow.Visibility = Visibility.Visible;
+                    }
+                    catch (OleDbException ex)
+                    {
+                        MessageBox.Show("Ошибка подключения к базе данных!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь с таким логином уже зарегистрирован!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            textBlock.Text = "Sign In";
+            registrationWindow.Visibility = Visibility.Collapsed;
+            authorizationWindow.Visibility = Visibility.Visible;
         }
     }
 }

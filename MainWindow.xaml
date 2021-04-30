@@ -10,7 +10,7 @@
         WindowStyle="None"  ResizeMode="NoResize"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
 
-    <Border CornerRadius="10" Grid.ColumnSpan="2">
+    <Border x:Name="mainBorder" CornerRadius="10" Grid.ColumnSpan="2">
         <Border.Background>
             <LinearGradientBrush>
                 <GradientStop Color="#7be9f6"  Offset="0.0"/>
@@ -34,10 +34,12 @@
             <Button x:Name="exitButton" Width="23" Height="23" Content="×" Click="exitButton_Click"  Margin="0, 15, 15, 0" FontWeight="Normal" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Grid.Column="1"/>
             <TextBlock Text="SCRUM board" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22" FontFamily="Helvetica" FontWeight="Light"/>
             <StackPanel Grid.Row="1">
+                <local:UserPanel x:Name="userPanel"/>
                 <Button x:Name="addTaskButton" Content="Add Task" Height="50" FontSize="14" Margin="10, 10, 10, 0" Click="addTaskButton_Click"/>
                 <Button x:Name="saveTaskButton" Content="Save" Height="50" FontSize="14" Margin="10, 10, 10, 0" Click="saveTaskButton_Click"/>
                 <Button x:Name="refreshTaskButton" Content="Refresh" Height="50" FontSize="14" Margin="10, 10, 10, 0" Click="refreshTaskButton_Click"/>
             </StackPanel>
+            <Button x:Name="themeButton" Grid.Row="1" VerticalAlignment="Bottom" Content="Dark Theme" Height="50" FontSize="14" Margin="10" Click="themeButton_Click"/>
             <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <Grid x:Name="mainGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
