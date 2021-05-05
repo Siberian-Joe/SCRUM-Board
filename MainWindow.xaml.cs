@@ -42,21 +42,6 @@ namespace ScrumBoardNewDesign
 
             userPanel.setUser(mainUser);
 
-
-            //mainGrid.RowDefinitions.Add(new RowDefinition());
-            //Grid grid = new Grid() { Width = 150, Height = 32 };
-            //Border border = new Border() { Background = Brushes.White, Opacity =  0.5, CornerRadius = new CornerRadius(10)};
-
-            //TextBlock textBlock = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment =  VerticalAlignment.Center };
-
-            //grid.Children.Add(border);
-            //grid.Children.Add(textBlock);
-
-            //textBlock.Text = users[0].fullName;
-            //Grid.SetRow(grid, 1);
-
-            //mainGrid.Children.Add(grid);
-
             readDB();
             fillFullNameColumn();
             fillColumns();
@@ -314,7 +299,6 @@ namespace ScrumBoardNewDesign
                     editableTask.column = Grid.GetColumn((Grid)sender);
                     stackPanels[0].Children.Add(editableTask);
                 }
-                    
                 else
                 {
                     if(editableTask.row + users.Count * (editableTask.column - 2) < 0)

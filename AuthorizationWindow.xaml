@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScrumBoardNewDesign"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="380"
+        Title="SCRUM board" Height="450" Width="380"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None"  ResizeMode="NoResize"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">

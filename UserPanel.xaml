@@ -14,11 +14,11 @@
                 <TextBlock x:Name="fullNameTextBlock" Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Логин: " Foreground="White" FontSize="13" FontFamily="Helvetica" FontWeight="Light"/>
+                <TextBlock Text="Логин: " Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
                 <TextBlock x:Name="usernameTextBlock" Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Должность: " Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
+                <TextBlock Text="Статус: " Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
                 <TextBlock x:Name="managerTextBlock" Foreground="White" FontSize="15" FontFamily="Helvetica" FontWeight="Light"/>
             </StackPanel>
 
