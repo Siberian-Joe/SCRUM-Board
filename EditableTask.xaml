@@ -6,22 +6,22 @@
              xmlns:local="clr-namespace:ScrumBoardNewDesign"
              mc:Ignorable="d" MouseEnter="userControlMouseEnter" MouseLeave="userControlMouseLeave" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" >
     <Grid x:Name="collapsedGrid" Height="60" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="150">
-        <Border BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#B2B90000" CornerRadius="10" Width="Auto" Height="60" >
+        <Border BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FF5754" CornerRadius="10" Width="Auto" Height="60" >
             
             <Grid x:Name="mainGrid">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid>
-                        <TextBlock x:Name="titleTextBlock" Text="Enter a name..." MaxWidth="120" TextWrapping="Wrap"  HorizontalAlignment="Center" MouseUp="titleTextBlock_MouseUp" FontFamily="Helvetica" FontWeight="Light"/>
+                        <TextBlock x:Name="titleTextBlock" Text="Enter a name..." Foreground="White" MaxWidth="120" TextWrapping="Wrap"  HorizontalAlignment="Center" MouseUp="titleTextBlock_MouseUp" FontFamily="Helvetica" FontWeight="Light"/>
                         <TextBox x:Name="titleTextBox" Visibility="Collapsed" Width="77" LostFocus="titleTextBoxLostFocus" HorizontalContentAlignment="Center"/>
                     </Grid>
                 </StackPanel>
-                <Expander x:Name="expander" Header="Info" Height="23" Expanded="expanderExpanded" Collapsed="expanderCollapsed" Opacity="0.7" VerticalAlignment="Bottom" FontFamily="Helvetica" FontWeight="Light">
+                <Expander x:Name="expander" Foreground="White" Header="Info" Height="23" Expanded="expanderExpanded" Collapsed="expanderCollapsed" VerticalAlignment="Bottom" FontFamily="Helvetica" FontWeight="Light">
                     <Grid x:Name="grid">
-                        <Border Background="#FFE5E5E5" CornerRadius="10"/>
+                        <Border Background="#1C263B" CornerRadius="10" BorderThickness="0,3,0,0"/>
                         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" VerticalScrollBarVisibility="Auto">
                             <Grid x:Name="grid1">
                                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Margin="6,1,0,0" MouseUp="textBlockMouseUp" FontFamily="Helvetica" FontWeight="Light"/>
-                                <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" Visibility="Hidden" Opacity="0.7" Margin="0,0,-196,0" Width="{Binding ActualWidth, ElementName=grid1, Mode=OneWay}" LostFocus="richTextBoxLostFocus"/>
+                                <RichTextBox x:Name="richTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" Visibility="Hidden" Margin="0,0,-196,0" Width="{Binding ActualWidth, ElementName=grid1, Mode=OneWay}" LostFocus="richTextBoxLostFocus"/>
                             </Grid>
                         </ScrollViewer>
                     </Grid>

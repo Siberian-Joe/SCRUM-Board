@@ -18,10 +18,7 @@
 
             <Border CornerRadius="10" Grid.RowSpan="2">
                 <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#7be9f6"  Offset="0.0"/>
-                        <GradientStop Color="#f083da"  Offset="1"/>
-                    </LinearGradientBrush>
+                    <SolidColorBrush  Color="#101828"/>
                 </Border.Background>
             </Border>
 
@@ -34,13 +31,15 @@
             <StackPanel x:Name="authorizationWindow" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="usernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Username" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                    <Image Source="assets/Sign-In-icon.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
                     <PasswordBox x:Name="passwordTextBox" FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+                    <Image Source="assets/key.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel  Orientation="Horizontal" Margin="0, 50, 0, 0" HorizontalAlignment="Center">
                     <Button x:Name="signInButton" Width="100" Height="40" Content="Sign In" Margin="0, 0, 10, 0" Click="signInButton_Click"/>
@@ -51,23 +50,27 @@
             <StackPanel x:Name="registrationWindow" Grid.Row="1" HorizontalAlignment="Center" Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="registrationUsernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Username" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+                    <Image Source="assets/Sign-In-icon.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
-                    <TextBox x:Name="registrationFullNameUsernameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Full Name" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="registrationFullNameUsernameTextBox_GotFocus" LostFocus="registrationFullNameUsernameTextBox_LostFocus"/>
+                    <TextBox x:Name="registrationFullNameTextBox" FontFamily="Helvetica" FontWeight="Light" Text="Full Name" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="registrationFullNameTextBox_GotFocus" LostFocus="registrationFullNameTextBox_LostFocus"/>
+                    <Image Source="assets/name.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
                 
                 <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
                     <PasswordBox x:Name="registrationFirstPasswordTextBox" FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+                    <Image Source="assets/key.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
                     <PasswordBox x:Name="registrationSecondPasswordTextBox" FontFamily="Helvetica" FontWeight="Light" Password="Password" FontSize="20" HorizontalAlignment="Center" Foreground="White" Background="Transparent" Width="235" Opacity="0.5" BorderBrush="Transparent" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+                    <Image Source="assets/key.png" Width="26" RenderOptions.BitmapScalingMode="HighQuality"/>
                 </StackPanel>
-                <Border Width="250" Height="2" Background="White" Opacity="0.5"/>
+                <Border Width="261" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel  Orientation="Horizontal" Margin="0, 7, 0, 0" HorizontalAlignment="Center">
                     <Button x:Name="continueButton" Width="100" Height="40" Content="Continue" Margin="0, 0, 10, 0" Click="continueButton_Click"/>

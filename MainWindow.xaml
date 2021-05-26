@@ -12,10 +12,7 @@
 
     <Border x:Name="mainBorder" CornerRadius="10" Grid.ColumnSpan="2">
         <Border.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="#7be9f6"  Offset="0.0"/>
-                <GradientStop Color="#f083da"  Offset="1"/>
-            </LinearGradientBrush>
+            <SolidColorBrush  Color="#101828"/>
         </Border.Background>
 
         <Grid>
@@ -28,8 +25,11 @@
                 <RowDefinition Height="53"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <Border x:Name="loadingBorder" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="White" Opacity="0.5" CornerRadius="10" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <Border x:Name="leftBorder" Grid.RowSpan="2" BorderBrush="#1C263B" CornerRadius="10" Background="#101828" BorderThickness="0, 0, 1, 0"/>
+            <Border x:Name="rightBorder" Grid.RowSpan="2" Grid.Column="1" CornerRadius="10" Background="#121A2B"/>
 
             <Button x:Name="exitButton" Width="23" Height="23" Content="×" Click="exitButton_Click"  Margin="0, 15, 15, 0" FontWeight="Normal" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Grid.Column="1"/>
             <TextBlock Text="SCRUM board" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22" FontFamily="Helvetica" FontWeight="Light"/>
@@ -50,6 +50,7 @@
                     </Grid.RowDefinitions>
                 </Grid>
             </ScrollViewer>
+            <Button x:Name="backButton" Width="23" Height="23" Content="←" Click="backButton_Click"  Margin="0,15,45,0" FontWeight="Normal" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Grid.Column="1"/>
         </Grid>
     </Border>
 </Window>

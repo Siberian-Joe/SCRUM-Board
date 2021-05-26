@@ -184,9 +184,7 @@ namespace ScrumBoardNewDesign
             {
                 EditableTask editableTask = (EditableTask)sender;
                 DataObject dataObject = new DataObject(editableTask);
-                //Console.WriteLine(editableTask.title);
                 DragDrop.DoDragDrop(editableTask, dataObject, DragDropEffects.Move);
-                //((Panel)this.Parent).Children.Remove(this);
             }
         }
     }

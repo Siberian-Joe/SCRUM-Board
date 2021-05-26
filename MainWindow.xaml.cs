@@ -30,6 +30,7 @@ namespace ScrumBoardNewDesign
         List<string> columns = new List<string>();
         List<StackPanel> stackPanels = new List<StackPanel>();
         static public List<EditableTask> editableTasks = new List<EditableTask>();
+        string stackPanelTheme = "#1C263B";
 
         static public bool shiftIsPressed;
 
@@ -42,10 +43,7 @@ namespace ScrumBoardNewDesign
 
             userPanel.setUser(mainUser);
 
-            readDB();
-            fillFullNameColumn();
-            fillColumns();
-            fillTasks();
+            refresh();
 
             if(!mainUser.canEdit)
             {
@@ -101,7 +99,7 @@ namespace ScrumBoardNewDesign
         void fillFullNameColumn()
         {
             Grid gridEmpty = new Grid() { MinWidth = 150, MinHeight = 32, Margin = new Thickness(2)};
-            Border borderEmpty = new Border() { Background = Brushes.White, Opacity = 0.5, CornerRadius = new CornerRadius(10) };
+            Border borderEmpty = new Border() { Background = (Brush)new BrushConverter().ConvertFrom(stackPanelTheme), CornerRadius = new CornerRadius(10) };
             gridEmpty.Children.Add(borderEmpty);
             mainGrid.Children.Add(gridEmpty);
             Grid.SetRow(gridEmpty, 0);
@@ -110,9 +108,9 @@ namespace ScrumBoardNewDesign
             {
                 mainGrid.RowDefinitions.Add(new RowDefinition());
                 Grid grid = new Grid() { MinWidth = 150, MinHeight = 32, Margin = new Thickness(2), VerticalAlignment = VerticalAlignment.Stretch};
-                Border border = new Border() { Background = Brushes.White, Opacity = 0.5, CornerRadius = new CornerRadius(10)};
+                Border border = new Border() { Background = (Brush)new BrushConverter().ConvertFrom(stackPanelTheme), CornerRadius = new CornerRadius(10)};
 
-                TextBlock textBlock = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontFamily = new FontFamily("Helvetica"), FontWeight = FontWeights.Light };
+                TextBlock textBlock = new TextBlock() { Foreground = Brushes.White, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontFamily = new FontFamily("Helvetica"), FontWeight = FontWeights.Light };
 
                 grid.Children.Add(border);
                 grid.Children.Add(textBlock);
@@ -130,9 +128,9 @@ namespace ScrumBoardNewDesign
             {
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 Grid gridTitle = new Grid() { Width = 150, Height = 32, Margin = new Thickness(2) };
-                Border borderTitle = new Border() { Background = Brushes.White, Opacity = 0.5, CornerRadius = new CornerRadius(10) };
+                Border borderTitle = new Border() { Background = (Brush)new BrushConverter().ConvertFrom(stackPanelTheme), CornerRadius = new CornerRadius(10) };
 
-                TextBlock textBlock = new TextBlock() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontFamily = new FontFamily("Helvetica"), FontWeight = FontWeights.Light };
+                TextBlock textBlock = new TextBlock() { Foreground = Brushes.White, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center, FontFamily = new FontFamily("Helvetica"), FontWeight = FontWeights.Light };
 
                 gridTitle.Children.Add(borderTitle);
                 gridTitle.Children.Add(textBlock);
@@ -150,7 +148,7 @@ namespace ScrumBoardNewDesign
                         Grid grid = new Grid() { AllowDrop = true, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Stretch, MinWidth = 150, MinHeight = (34 * users.Count), Margin = new Thickness(0, 1, 0, 1) };
                         StackPanel stackPanel = new StackPanel();
                         
-                        Border border = new Border() { Background = Brushes.White, Opacity = 0.5, CornerRadius = new CornerRadius(10)};
+                        Border border = new Border() { Background = (Brush)new BrushConverter().ConvertFrom(stackPanelTheme), CornerRadius = new CornerRadius(10)};
                         grid.Drop += StackPanel_Drop;
                         stackPanels.Add(stackPanel);
 
@@ -169,7 +167,7 @@ namespace ScrumBoardNewDesign
                     {
                         Grid grid = new Grid() { AllowDrop = true, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Stretch, MinWidth = 150, MinHeight = 32, Margin = new Thickness(0, 1, 0, 2) };
                         StackPanel stackPanel = new StackPanel();
-                        Border border = new Border() { Background = Brushes.White, Opacity = 0.5, CornerRadius = new CornerRadius(10) };
+                        Border border = new Border() { Background = (Brush)new BrushConverter().ConvertFrom(stackPanelTheme), CornerRadius = new CornerRadius(10) };
 
                         grid.Drop += StackPanel_Drop;
 
@@ -218,6 +216,11 @@ namespace ScrumBoardNewDesign
         }
 
         private void refreshTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            refresh();
+        }
+
+        private void refresh()
         {
             mainGrid.Children.Clear();
             mainGrid.ColumnDefinitions.Clear();
@@ -328,23 +331,38 @@ namespace ScrumBoardNewDesign
         {
             if (!flag)
             {
-                mainBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#272537");
+                leftBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#0C0E13");
+                leftBorder.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#181A20");
+                rightBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#0E1015");
+                mainBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#0E1015");
 
-                themeButton.Content = "White Theme";
+                stackPanelTheme = "#181A20";
+
+                themeButton.Content = "Blue Theme";
                 flag = true;
+
+                refresh();
             }
             else
             {
+                leftBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#101828");
+                leftBorder.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFromString("#1C263B");
+                rightBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#121A2B");
+                mainBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#121A2B");
 
-                GradientStopCollection gradientStops = new GradientStopCollection();
-                gradientStops.Add(new GradientStop() { Color = Color.FromRgb(123, 233, 246), Offset = 0.0 });
-                gradientStops.Add(new GradientStop() { Color = Color.FromRgb(240, 131, 218), Offset = 1.0 });
-
-                mainBorder.Background = new LinearGradientBrush(gradientStops, 60) { StartPoint = new Point(0, 0), EndPoint = new Point(1, 1) };
+                stackPanelTheme = "#1C263B";
 
                 themeButton.Content = "Dark Theme";
                 flag = false;
+
+                refresh();
             }
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            new AuthorizationWindow().Show();
+            this.Close();
         }
     }
 }

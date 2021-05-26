@@ -39,7 +39,7 @@ namespace ScrumBoardNewDesign
                 ((TextBox)sender).Clear();
         }
 
-        private void registrationFullNameUsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void registrationFullNameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (((TextBox)sender).Text.Equals("Full Name"))
                 ((TextBox)sender).Clear();
@@ -51,7 +51,7 @@ namespace ScrumBoardNewDesign
                 ((TextBox)sender).Text = "Username";
         }
 
-        private void registrationFullNameUsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void registrationFullNameTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if (((TextBox)sender).Text.Equals(""))
                 ((TextBox)sender).Text = "Full Name";
@@ -148,7 +148,7 @@ namespace ScrumBoardNewDesign
                     try
                     {
                         dbConnection.Open();
-                        OleDbCommand dbCommand = new OleDbCommand("INSERT INTO Пользователи (ФИО, [Имя пользователя], Пароль) VALUES (" + "'" + registrationFullNameUsernameTextBox.Text + "'" + "," + "'" + registrationUsernameTextBox.Text + "'" + "," + "'" + registrationFirstPasswordTextBox.Password + "'" + ")", dbConnection);
+                        OleDbCommand dbCommand = new OleDbCommand("INSERT INTO Пользователи (ФИО, [Имя пользователя], Пароль) VALUES (" + "'" + registrationFullNameTextBox.Text + "'" + "," + "'" + registrationUsernameTextBox.Text + "'" + "," + "'" + registrationFirstPasswordTextBox.Password + "'" + ")", dbConnection);
 
                         dbCommand.ExecuteNonQuery();
 

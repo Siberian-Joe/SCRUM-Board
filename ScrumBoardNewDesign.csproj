@@ -135,6 +135,8 @@
     <Resource Include="assets\wrong icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="assets\name.png" />
+    <Resource Include="assets\key.png" />
     <Content Include="assets\loading.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
