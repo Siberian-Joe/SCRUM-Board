@@ -140,7 +140,7 @@ namespace ScrumBoardNewDesign {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ScrumBoardNewDesign;component/editabletask.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Scrum-board;component/editabletask.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\EditableTask.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

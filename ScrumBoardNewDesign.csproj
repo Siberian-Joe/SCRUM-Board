@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>scrum.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -135,6 +138,7 @@
     <Resource Include="assets\wrong icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="scrum.ico" />
     <Resource Include="assets\name.png" />
     <Resource Include="assets\key.png" />
     <Content Include="assets\loading.gif">
