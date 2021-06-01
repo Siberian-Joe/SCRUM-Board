@@ -26,11 +26,13 @@ namespace ScrumBoardNewDesign
         public int oldRow { get; set; }
         public int column { get; set; }
         public int row { get; set; }
+        static public string backInfoTheme = "#1C263B";
         public StackPanel oldStackPanel { get; set; }
         public StackPanel stackPanel { get; set; }
         public EditableTask()
         {
             InitializeComponent();
+            infoBackBorder.Background = (Brush)new BrushConverter().ConvertFrom(backInfoTheme);
             title = titleTextBlock.Text;
             info = textBlock.Text;
         }
@@ -38,6 +40,8 @@ namespace ScrumBoardNewDesign
         public EditableTask(string title, string info, int column, int row)
         {
             InitializeComponent();
+
+            infoBackBorder.Background = (Brush)new BrushConverter().ConvertFrom(backInfoTheme);
 
             titleTextBlock.Text = title;
             textBlock.Text = info;
@@ -48,6 +52,7 @@ namespace ScrumBoardNewDesign
             this.title = title;
             this.info = info;
         }
+
         private void expanderExpanded(object sender, RoutedEventArgs e)
         {
             expander.Height = 123;

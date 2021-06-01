@@ -17,7 +17,7 @@
                 </StackPanel>
                 <Expander x:Name="expander" Foreground="White" Header="Info" Height="23" Expanded="expanderExpanded" Collapsed="expanderCollapsed" VerticalAlignment="Bottom" FontFamily="Helvetica" FontWeight="Light">
                     <Grid x:Name="grid">
-                        <Border Background="#1C263B" CornerRadius="10" BorderThickness="0,3,0,0"/>
+                        <Border x:Name="infoBackBorder" Background="#1C263B" CornerRadius="10" BorderThickness="0,3,0,0"/>
                         <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" VerticalScrollBarVisibility="Auto">
                             <Grid x:Name="grid1">
                                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Margin="6,1,0,0" MouseUp="textBlockMouseUp" FontFamily="Helvetica" FontWeight="Light"/>

@@ -338,6 +338,8 @@ namespace ScrumBoardNewDesign
 
                 stackPanelTheme = "#181A20";
 
+                EditableTask.backInfoTheme = stackPanelTheme;
+
                 themeButton.Content = "Blue Theme";
                 flag = true;
 
@@ -351,6 +353,8 @@ namespace ScrumBoardNewDesign
                 mainBorder.Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#121A2B");
 
                 stackPanelTheme = "#1C263B";
+
+                EditableTask.backInfoTheme = stackPanelTheme;
 
                 themeButton.Content = "Dark Theme";
                 flag = false;
